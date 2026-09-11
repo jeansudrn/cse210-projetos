@@ -6,7 +6,6 @@ public class Registro
     private string _textoPergunta;
     private string _textoRegistro;
 
-    // Construtor
     public Registro(string data, string textoPergunta, string textoRegistro)
     {
         _data = data;
@@ -14,7 +13,6 @@ public class Registro
         _textoRegistro = textoRegistro;
     }
 
-    // Exibe a entrada formatada na tela para o usuário
     public void Exibir()
     {
         Console.WriteLine($"Data: {_data} — Pergunta: {_textoPergunta}");
@@ -22,9 +20,15 @@ public class Registro
         Console.WriteLine(new string('-', 40));
     }
 
-    // Formata os dados internos em texto simples separado por delimitador para persistência
     public string FormatarParaArquivo()
     {
         return $"{_data} | {_textoPergunta} | {_textoRegistro}";
+    }
+
+    // Método auxiliar para o critério 10 (Criatividade)
+    public bool ContemPalavraChave(string palavraChave)
+    {
+        return _textoRegistro.Contains(palavraChave, StringComparison.OrdinalIgnoreCase) || 
+               _textoPergunta.Contains(palavraChave, StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -13,7 +13,6 @@ public class GeradorDePerguntas
         "O que fiz hoje que me deixou mais próximo dos meus objetivos?"
     };
 
-    // Sorteia e retorna uma pergunta aleatória
     public string ObterPerguntaAleatoria()
     {
         Random random = new Random();

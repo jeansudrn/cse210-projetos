@@ -6,13 +6,11 @@ public class Diario
 {
     private List<Registro> _registros = new List<Registro>();
 
-    // Adiciona uma nova instância de Registro à lista privada
     public void AdicionarRegistro(Registro novoRegistro)
     {
         _registros.Add(novoRegistro);
     }
 
-    // Varre a lista delegando a exibição individual para cada objeto Registro
     public void ExibirTodos()
     {
         if (_registros.Count == 0)
@@ -27,7 +25,6 @@ public class Diario
         }
     }
 
-    // Grava as linhas no arquivo de texto simples usando o delimitador " | "
     public void SalvarEmArquivo(string nomeArquivo)
     {
         try
@@ -47,7 +44,6 @@ public class Diario
         }
     }
 
-    // Carrega e reconstrói os objetos Registro com base nas linhas tratadas do arquivo
     public void CarregarDeArquivo(string nomeArquivo)
     {
         if (!File.Exists(nomeArquivo))
@@ -58,12 +54,11 @@ public class Diario
 
         try
         {
-            _registros.Clear(); // Limpa dados temporários em memória antes de ler do arquivo
+            _registros.Clear();
             string[] linhas = File.ReadAllLines(nomeArquivo);
 
             foreach (string linha in linhas)
             {
-                // Cláusula de segurança contra linhas em branco acidentais
                 if (string.IsNullOrWhiteSpace(linha)) continue;
 
                 string[] partes = linha.Split(new string[] { " | " }, StringSplitOptions.None);
@@ -83,6 +78,27 @@ public class Diario
         catch (Exception erro)
         {
             Console.WriteLine($"Erro ao carregar o arquivo: {erro.Message}");
+        }
+    }
+
+    // Método criado para atender o critério 10 (Criatividade/Going Beyond)
+    public void BuscarPorPalavraChave(string palavraChave)
+    {
+        Console.WriteLine($"\n--- Resultados para a busca: '{palavraChave}' ---");
+        bool encontrou = false;
+
+        foreach (Registro registro in _registros)
+        {
+            if (registro.ContemPalavraChave(palavraChave))
+            {
+                registro.Exibir();
+                encontrou = true;
+            }
+        }
+
+        if (!encontrou)
+        {
+            Console.WriteLine("Nenhum registro encontrado com essa palavra-chave.");
         }
     }
 }
