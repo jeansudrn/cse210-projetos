@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Criando a lista para armazenar os vídeos
+        // Criando a lista para armazenar os vídeos (variável local em camelCase)
         List<Video> listaDeVideos = new List<Video>();
 
         // ==========================================
@@ -61,63 +61,4 @@ class Program
             Console.WriteLine("\n==================================================\n");
         }
     }
-}
-
-// ==========================================
-// CLASSE VIDEO
-// ==========================================
-class Video
-{
-    // Atributos (Variáveis membro)
-    private string _titulo;
-    private string _autor;
-    private int _duracaoEmSegundos;
-    private List<Comentario> _comentarios;
-
-    // Construtor
-    public Video(string titulo, string autor, int duracaoEmSegundos)
-    {
-        _titulo = titulo;
-        _autor = autor;
-        _duracaoEmSegundos = duracaoEmSegundos;
-        _comentarios = new List<Comentario>(); // Inicializa a lista vazia
-    }
-
-    // Métodos
-    public void AdicionarComentario(Comentario comentario)
-    {
-        _comentarios.Add(comentario);
-    }
-
-    public int ObterQuantidadeDeComentarios()
-    {
-        return _comentarios.Count;
-    }
-
-    // Getters para permitir que o Program.cs acesse as informações de forma segura
-    public string GetTitulo() { return _titulo; }
-    public string GetAutor() { return _autor; }
-    public int GetDuracao() { return _duracaoEmSegundos; }
-    public List<Comentario> ObterComentarios() { return _comentarios; }
-}
-
-// ==========================================
-// CLASSE COMENTARIO
-// ==========================================
-class Comentario
-{
-    // Atributos (Variáveis membro)
-    private string _nomeDoUsuario;
-    private string _texto;
-
-    // Construtor
-    public Comentario(string nomeDoUsuario, string texto)
-    {
-        _nomeDoUsuario = nomeDoUsuario;
-        _texto = texto;
-    }
-
-    // Getters para exibição segura dos dados
-    public string GetNomeDoUsuario() { return _nomeDoUsuario; }
-    public string GetTexto() { return _texto; }
 }
